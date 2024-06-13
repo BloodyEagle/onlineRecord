@@ -1,2 +1,4 @@
 # onlineRecord
- Online recort to course of Pedagog13.ru
+ Запись на курсы. Действующиая копия https://на onrec.edurm.ru
+
+ бОльшая часть функционала доступна только привелигированным пользователям.
