@@ -1,0 +1,76 @@
+
+	<script>
+            function isValidEmailAddress(emailAddress) {
+                    var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
+                    return pattern.test(emailAddress);
+            }//isValidEmailAddress(emailAddress)================================================================
+            
+            
+		$(document).ready(function(){
+
+		$('.custom-checkbox').each(function(){
+			var checkbox = $(this);
+			checkbox.prepend('<span class="custom-checkbox-button"></span>');
+			if( checkbox.find('input').is(':checked') ) {
+				checkbox.addClass('checked');
+			}
+			checkbox.on('change', function () {
+				var input = $(this).find('input');
+				input.closest('.custom-checkbox').toggleClass('checked', input.is(':checked'));
+			});
+		});
+		
+		$('#ep').change(function(){
+			if ($('#ep').prop( "checked" )){
+				$('#atype').text('e-mail');
+				$("#eort").unmask();
+				$("#eort").attr('placeholder',"vasya.pupkin@gmail.com");
+			} else {
+				$('#atype').text('телефон');
+				$("#eort").mask("+7(999)999-99-99");
+				$("#eort").attr('placeholder',"+7(999)555-77-88");
+			}
+		});
+			
+		});
+	</script>
+        <style type="text/css">
+            #lofinblock {
+                padding: 20px;
+            }
+        </style>
+    <p align="center">Для использования всех возможностей страницы  и для записи на курсы вам нужно войти в свой личный кабинет.<br />
+        Если его у вас еще нет, то вам нужно <a href="?act=regform" class="button show-tooltip" title="Щелкните, чтобы создать личный кабинет" style="color: white; text-decoration: none; background-color: #FE4E51;">создать</a> его.</p>
+	<form action="index.php?act=auth" method="post">
+            <input type="hidden" value="{%CATID%}" name="cat">
+		<div id="lofinblock" class="container round5border shadow dgraybg">
+			<table border="0" cellspacing="0" cellpadding="0" align="center">
+			  <tbody>
+				<tr>
+				  <td align="right">Телефон&nbsp;</td>
+				  <td align="center"><label class="custom-checkbox">
+							<input type="checkbox" id="ep" name="ep" checked>
+						</label></td>
+				  <td align="left">&nbsp;E-mail</td>
+				</tr>
+				<tr>
+				  <td colspan="3" align="center"><br /><label>Введите свой <span id="atype">e-mail</span><br />
+		<input type="text" name="eort" id="eort" placeholder="vasya.pupkin@gmail.com">
+		</label></td>
+				</tr>
+				<tr>
+				  <td colspan="3" align="center"><label>Введите пароль<br />
+		<input type="password" name="pass" id="pass">
+		</label></td>
+				</tr>
+				<tr>
+				  <td colspan="3" align="center"><br /><input type="submit" value="Войти"></td>
+				</tr>
+			  </tbody>
+			</table>
+
+			
+		</div>
+	</form>
+    <p align="center"><a href="?act=recpassform">Я не помню свой пароль!</a>
+	<div class="cmes">Если у вас возникли проблемы при регистрации или при входе в свой личный кабинет, или же при записи на курс, то все вопросы можно задать в WhatsApp чате - <a href="https://chat.whatsapp.com/EhLB7fglWzEL5DtUpnXx8u" target="_blank">тут</a></div></p>

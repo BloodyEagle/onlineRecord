@@ -1,0 +1,99 @@
+	<script>
+//var city = null;
+
+    $(document).ready(function(){
+                
+
+                        $("#wphone").mask("+7(999)999-99-99");
+                          ( function( factory ) {
+                            "use strict";
+
+                            if ( typeof define === "function" && define.amd ) {
+
+                                    // AMD. Register as an anonymous module.
+                                    define( [ "../widgets/datepicker" ], factory );
+                            } else {
+
+                                    // Browser globals
+                                            factory( jQuery.datepicker );
+                                    }
+                            } )
+                            
+                         $( "#work" ).show();
+                        
+                        $('#accept').on('click',function() {
+                            
+                            if ($(this).prop("checked")){
+                                $(this).val('accept');
+                            } else {
+                                $(this).val('');
+                            }
+                        });
+                        
+                        //-------------------------------------------------------------------------------------------
+                        $(function(){
+                            $("form").submit(function() {// обрабатываем отправку формы   
+                                var error=0; // индекс ошибки
+                                $(".rfield").each(function() {// проверяем каждое поле в форме
+                                            if(!$(this).val()){// если в поле пустое
+                                                $(this).css('border', 'red 2px solid').css('background-color','#DDAAAA');// устанавливаем рамку красного цвета
+                                                error=1;// определяем индекс ошибки      
+                                            }
+                                            else{
+                                                $(this).css('border', 'gray 1px solid').css('background-color','');// устанавливаем рамку обычного цвета
+                                            }
+                                })
+                                //alert(error);
+                                if(error==0){ // если ошибок нет то отправляем данные
+                                    $("#messenger").hide();
+                                    return true;
+                                }
+                                else{
+                                if(error==1) var err_text = "Не все обязательные поля заполнены!";
+                                if(error==4)  var err_text=e.message;
+                                $("#messenger").html(err_text);
+                                $("#messenger").fadeIn("slow");
+                                return false; //если в форме встретились ошибки , не  позволяем отослать данные на сервер.
+                                }
+                            })
+                        });
+                        //-------------------------------------------------------------------------------------------
+		});
+	</script>
+ <style type="text/css">
+            p.c {
+               text-align: center;
+            }
+            .long{
+                width: 50%;
+            }
+        </style>
+        <p class="c">Заполните поля, расположенные ниже, информацией.<br />
+        Внимание! Поля, помеченые звездочкой [<span style="color: red;">*</span>] - обязательны для заполнения!</p>
+        <div class="form_box" >
+	<form action="/?act=savework" method="post" class="rf" enctype="multipart/form-data">
+            <input type="hidden" name="id" id="id" value="{%WORKID%}" />
+
+            <div class="formrow shadow round5border dgraybg w100ps vert center">
+                <h4>Данные о работе</h4>
+                <p class="c w100ps"><label for="organisation" class="field">Введите краткое название организации <span style="color: red;">*</span></label><br /><input type="text" class="long rfield w100ps" name="organisation" id="organisation" value="{%ORGANISATION%}" placeholder="ГБУ МОУ &Prime;Сузгарская средняя школа&Prime; ">
+                <p class="c"><label for="wregion" class="field">Регион организации<span style="color: red;">*</span></label><br>{%WREGIONLIST%}</p>
+                <p class="c" id="wregrm"><label for="wregionrm" class="field">Выберите район Мордовии<span style="color: red;">*</span></label><br />{%WREGRMLIST%}</p>
+                <div class="horiz tabfield" id="waddr"><input type="text" name="waddress" id="waddress" class="rfield" value="{%WADDRESS%}"><label for="waddress" class="field">Полный почтовый адрес<span style="color: red;">*</span></label></div>
+                <div class="horiz tabfield" id="wcitybox"><input type="text" name="wcity" id="wcity" value="{%WCITY%}" placeholder="поc. Атяшево" class="rfield"><label for="wcity" class="field">Населенный пункт<span style="color: red;">*</span></label></div>
+                <div class="horiz tabfield"><input type="text" class="long" name="dolgnost" id="dolgnost" placeholder="учитель физики"  value="{%PROFESSION%}"><label for="dolgnost" class="field">Введите свою должность <span style="color: red;">*</span></label></div>
+                <div class="horiz tabfield"><input type="text" name="wstage" id="wstage" size="3" value="{%STAGE%}"><label for="wstage" class="field">Каков ваш стаж в этой должности? <span style="color: red;">*</span></label></div>
+                <div class="horiz tabfield"><input type="checkbox" name id="gosslujba" value="gos" {%GOSSLUJBA%}><label for="gosslujba" class="field">Я являюсь госслужащим</label></div>
+                <div class="horiz tabfield"><input type="text" name="wphone" id="wphone" placeholder="+7(999)333-22-11" size="15" value="{%WORKPHONE%}"><label for="wphone" class="field">Введите номер рабочего телефона <span style="color: red;">*</span></label></div>
+            </div>
+
+            <label class="field"><span style="color: red;">*</span><input type="checkbox" name="accept" value="" class="rfield" id="accept">&nbsp;Я даю добровольное согласие на обработку моих личных данных. Более подробно с политикой обработки информации вы можете ознакомится <a href="#">перейдя по этой ссылке.</a></label>
+
+            <div class="formrow w100ps vert center">
+                 <div id="messenger"></div>
+             </div>
+            <div class="formrow w100ps vert center">
+            <input type="submit" id="save" value="Отправить данные" class="btn_submit disabled">
+            </div>
+        </form>
+        </div>

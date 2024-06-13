@@ -1,0 +1,110 @@
+<style type="text/css">
+
+#addcourse > div {
+    justify-content: center;
+    text-align: center;
+}
+#title{
+    margin: 0 0 10px 0;
+}
+#name {
+    width: 98%;
+}
+
+
+</style>
+<h4 id="title"><span id="newcourse">Новый</span> курс в категории {%CATEGORY NAME%}</h4>
+
+            <form id="addcourse" action="/?act=savecourse" method="post" enctype="multipart/form-data">
+                {%ID%}
+                {%EDIT%}
+                <div class="formrow shadow round5border dgraybg"><p>Обложка курса: <span id="imgname"></span> <span id="imgsize"></span></p>
+                    <label for="cover" id="coverimg" title="Загрузите изображение.<br>В идеале размером 500х300 пикселей.<br>При других размерах и пропорциях может<br>обрезать часть изображения." class="show-tooltip">
+                        <input type="file" name="cover" id="cover" style="display: none">
+                    </label>
+                </div>
+                <div class="formrow shadow round5border dgraybg">
+                    <label>Название курса: <span style="color: red;">*</span>
+                        <input type="text" name="name" id="name" class="rfield" value="{%COURSE NAME%}">
+                        <span style="font-size: xx-small; position: relative; top: -10px; display: inline;" title="Прислушайтесь к совету!" class="show-tooltip">Чем короче, тем лучше</span>
+                    </label>
+                </div>
+                <div class="formrow shadow round5border dgraybg">
+                    <label>Описанние курса: <span style="color: red;">*</span>
+                        <textarea name="note" id="note" style="width: 100%; height: 500px;" class="rfield">{%COURSE NOTE%}</textarea>
+                    </label>
+                </div>
+                <div class="formrow shadow round5border dgraybg">
+                    <label>Категория слушателей <span class="wrong">из плана-графика курсов</span> (<span class="wrong">со строчной буквы</span>):<br>
+                        <span id="predmetlist">
+                            {%PREDMET LIST%}
+                        </span>
+                    </label>
+                    <a href="#modal1" id="addnewpredmet" class="open_modal show-tooltip" title="Добавить новую категорию<br>Добавляйте новую категорию только в случае<br>отсутствия подходящей в списке.<br>Воспользуйтесь поиском!">
+                        <img src="/img/1x1.gif" class="icobtn ibaddcourse">
+                    </a>
+                </div>
+                <div class="formrow shadow round5border dgraybg">Даты проведения <span style="color: red;">*</span>
+                    с&nbsp;<input type="text" name="start" id="start" autocomplete="off" placeholder="21.02.2022" class="date" value="{%COURSE START%}">&nbsp;по&nbsp;<input type="text" name="stop" id="stop" autocomplete="off" placeholder="19.03.2022" class="date" value="{%COURSE STOP%}">
+                </div>
+                <div class="formrow shadow round5border dgraybg">
+                    <div><label>Форма обучения: {%FORM LIST%}
+                        </label></div>
+                    <div><label>
+                        <input type="checkbox" name="dist" id="dist" {%COURSE DIST%}>&nbsp;Дистанционная
+                        </label></div>
+                </div>
+                <div class="formrow shadow round5border dgraybg">
+                    <label>Объём курса (часов): <span style="color: red;">*</span> 
+                        <input type="text" name="hours" id="hours" size="4" class="rfield" value="{%COURSE HOURS%}">
+                    </label>
+                </div>
+                
+                <div class="formrow shadow round5border dgraybg">
+                    <label>Источник финансирвания:  {%FINANCE LIST%}
+                    </label>
+                </div>
+                <div class="formrow shadow round5border dgraybg">
+                    <label>Дополнительная профессиональная программа: {%DPP LIST%}
+                    </label>
+                </div>
+                <div class="formrow shadow round5border dgraybg">
+                    <label>Режим отрыва от производства: {%MODE LIST%}
+                    </label>
+                </div>
+                
+                <div class="formrow shadow round5border dgraybg">
+                    <div>
+                        <label>Руководитель курса: <span style="color: red;">*</span>
+                            <input type="text" name="curator" id="curator" class="rfield" value="{%COURSE CURATOR%}">
+                        </label>
+                    </div>
+                    <div>
+                        <label>Почта руководителя: <span style="color: red;">*</span>
+                            <input type="text" name="curatoremail" id="curatoremail" class="rfield" value="{%CURATOR EMAIL%}">
+                        </label>
+                    </div>
+                    <div>
+                        <label>Телефон руководителя:
+                            <input type="text" name="curatorphone" id="curatorphone" class="rfield" value="{%CURATOR PHONE%}">
+                        </label>
+                    </div>
+                    <div>    
+                        <label>
+                            <input type="checkbox" name="mailtocurator" id="mailtocurator" {%MAILTO CURATOR%}>&nbsp;Также отправлять заявки на почту руководителя
+                        </label>
+                    </div>
+                </div>
+                <div class="formrow shadow round5border dgraybg">
+                    <label>Ссылка на чат группы:
+                        <input type="text" name="chatlink" id="chatlink" title="Ссылка на вступление в группу.<br />Чат можно создать в WhatsApp, Telegram, Viber.<br />
+                               Ссылка будет видна только тем, кого зачислят на программу!" class="show-tooltip" value="{%CHAT LINK%}">
+                    </label>
+                </div>
+                <div class="formrow shadow round5border dgraybg">
+                    <label><input type="checkbox" name="regclosed" id="regclosed" {%REG CLOSED%}>&nbsp;Закрыть регистрацию на курс
+                    </label>
+                </div>
+                <div id="messenger"></div>
+                <div><input type="submit" id="submit" value="Сохранить"></div>
+            </form>

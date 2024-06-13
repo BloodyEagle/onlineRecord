@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Параметры отчета</title>
+    <link rel="stylesheet" href="../jquery-ui.min.css">
+    <script src="../jquery-3.6.3.min.js"></script>
+    <script src="../jquery.maskedinput.min.js" type="text/javascript"></script>
+    <script  type="text/javascript" src="../tooltips.js"></script>
+    <script src="../jquery-ui.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            ( function( factory ) {
+                "use strict";
+
+                if ( typeof define === "function" && define.amd ) {
+
+                    // AMD. Register as an anonymous module.
+                    define( [ "../widgets/datepicker" ], factory );
+                } else {
+
+                    // Browser globals
+                    factory( jQuery.datepicker );
+                }
+            } )
+            ( function( datepicker ) {
+                "use strict";
+                datepicker.regional.ru = {
+                    closeText: "Закрыть",
+                    prevText: "&#x3C;Пред",
+                    nextText: "След&#x3E;",
+                    currentText: "Сегодня",
+                    monthNames: [ "Январь", "Февраль", "Март", "Апрель", "Май", "Июнь",
+                        "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь" ],
+                    monthNamesShort: [ "Янв", "Фев", "Мар", "Апр", "Май", "Июн",
+                        "Июл", "Авг", "Сен", "Окт", "Ноя", "Дек" ],
+                    dayNames: [ "воскресенье", "понедельник", "вторник", "среда", "четверг", "пятница", "суббота" ],
+                    dayNamesShort: [ "вск", "пнд", "втр", "срд", "чтв", "птн", "сбт" ],
+                    dayNamesMin: [ "Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб" ],
+                    weekHeader: "Нед",
+                    dateFormat: "dd.mm.yy",
+                    firstDay: 1,
+                    isRTL: false,
+                    showMonthAfterYear: false,
+                    yearSuffix: "" };
+                datepicker.setDefaults( datepicker.regional.ru );
+                return datepicker.regional.ru;
+            } );
+
+            $('.date').datepicker({
+                changeMonth: true,
+                changeYear: true
+            });
+            $('.date').mask("99.99.9999");
+        });
+
+
+    </script>
+</head>
+<body>
+  Тут будут настройки отчета
+  <!-- ниже URL содержит ID отчета. Так можно передавать параметры в php отчет -->
+  <form action="/?act=reports&id=5" method="post" enctype="multipart/form-data">
+      <!-- Кроме этого в коде HTML страницы {%ID%} заменяется на id отчета автоматически
+      например так:
+      <input type="hidden" name="id" value="{%ID%}">
+      -->
+      <fieldset>
+          <legend>Временной период</legend>
+      c <input type="text" name="params[datafrom]" id="datafrom" class="date"> по <input type="text" name="params[datato]" id="datato" class="date">
+      </fieldset>
+      <input type="submit" value=">>>>>>>>>>">
+  </form>
+
+</body>
+</html>

@@ -1,0 +1,35 @@
+@charset "utf-8";
+.container {
+	display: flex; /* or inline-flex */
+	flex-wrap: wrap; /*nowrap | wrap | wrap-reverse;*/
+	justify-content: center safe; /*flex-start | flex-end | center | space-between | space-around | space-evenly | start | end | left | right ... + safe | unsafe;*/
+}
+.item{
+	
+}
+.header{
+	flex-grow: 1;
+	width: 100%;
+	background-color: aquamarine;
+	margin: auto;
+}
+.nav{
+	flex-grow: 1;
+	width: 100%;
+	background-color: burlywood;
+	margin: auto;
+}
+.left{
+	flex-grow: 2;
+	background-color: coral;
+}
+.right{
+	flex-grow: 1;
+	background-color: darkgray;
+}
+.footer{
+	flex-grow: 1;
+	width: 100%;
+	background-color: dodgerblue;
+	margin: auto;
+}

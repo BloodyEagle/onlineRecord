@@ -1,0 +1,88 @@
+.container {
+  display: flex;
+  flex-flow: row wrap;
+  align-content: center;
+	align-items: center;
+	justify-content: center;
+    /* Optional */
+  background-color: #f7f7f7;
+  border-radius: 5px;
+  padding: 0;
+  margin: 40px auto;
+}
+
+.item {
+	display: flex;
+	flex-flow: column nowrap;
+  width: 500px;
+  /* Optional */
+  position: relative;
+  margin: 5px;
+  border-radius: 5px;
+  background-color: #a1cbfa;
+  border: 1px solid #4290e2;
+  box-shadow: 0 2px 2px rgba(0,90,250,0.05),
+    0 4px 4px rgba(0,90,250,0.05),
+    0 8px 8px rgba(0,90,250,0.05),
+    0 16px 16px rgba(0,90,250,0.05);
+  color: #fff;
+  /*padding: 15px;*/
+  box-sizing: content-box;
+}
+.cimg{
+	width: 500px;
+	height: 300px;
+}
+.item img {
+    object-fit: cover;
+    width: 500px;
+    height: 300px;;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+.header{
+    display: flex;
+    margin: auto;
+    width: 100%;
+}
+
+/* Средние экраны */
+@media all and (max-width:1023px){
+	.item {
+		width: 350px;
+	}
+	.cimg{
+		width: 350px;
+		height: 210px;
+	}
+	.item img {
+			object-fit: cover;
+			width: 350px;
+			height: 210px;
+			border-top-left-radius: 5px;
+			border-top-right-radius: 5px;
+
+	}
+
+}
+
+
+/* Мелкие экраны */
+@media all and (max-width:412px) and (max-device-width:412px){
+	.item {
+		width: 300px;
+	}
+	.cimg{
+		width: 300px;
+		height: 200px;
+	}
+	.item img {
+			object-fit: cover;
+			width: 300px;
+			height: 200px;
+			border-top-left-radius: 5px;
+			border-top-right-radius: 5px;
+
+	}
+
+}

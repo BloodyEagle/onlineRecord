@@ -1,0 +1,22 @@
+{
+	"name" : "orec/orec",
+	"require" : {
+		"phpoffice/phpspreadsheet" : "1.29.0",
+		"tracy/tracy" : "dev-master",
+		"usmanhalalit/pixie" : "2.0.2",
+		"taigasys/name-case": "dev-master",
+		"phpmailer/phpmailer": "v6.8.1",
+		"jasongrimes/paginator": "1.0.3",
+      	"ext-imagick": "*",
+		"ext-openssl": "*"
+	},
+	"autoload" : {
+		"files" : [
+			"inc/config.inc.php",
+			"inc/common.inc.php"
+		],
+		"psr-4" : {
+			"OnlineRecord\\" : "inc"
+		}
+	}
+}

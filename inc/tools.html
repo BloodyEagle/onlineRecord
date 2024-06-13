@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tools</title>
+    <style>
+        .tb{
+            display: block;
+            width: 99%;
+            margin: 5px;
+            padding: 5px;
+            background-color: #adadad;
+            border-radius: 5px;
+        }
+        .info{
+            border: thin blue solid;
+            background-color: silver;
+            border-radius: 5px;
+            padding: 3px;
+            display: block;
+            float: left;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('#encode').on('click', function () {
+                $('#encpass').load('/tools.php?act=encpass', {pass: $('#pass').val()});
+            })
+        });
+    </script>
+</head>
+<body>
+<div class="tb">Пароль<br />
+    <input type="text" name="pass" id="pass">
+    <input type="button" value="Зашифровать" id="encode">
+    <div id="encpass" class="info"></div>
+</div>
+</body>
+</html>

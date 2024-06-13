@@ -1,0 +1,52 @@
+<style>
+.modal_div {
+   width: 800px;
+   margin-left: -400px; /* oтступaем влевo и вверх минус пoлoвину ширины и высoты сooтветственнo */
+}
+.ctitle {
+    font-weight: bold;
+}
+.c1str, .cboss {
+    font-style: italic;
+}
+.modalcontent{
+    line-height: 1.1em;
+}
+.modalcontent > p{
+    margin: 0.2em;
+    padding: 0.1em;
+}
+.modalcontent .cnote{
+        border-top: thin dotted #333;  
+        text-align: justify;
+    }
+    
+@media all and (max-width: 810px) {
+    .modal_div {
+       width: 750px;
+       margin-left: -325px; /* oтступaем влевo и вверх минус пoлoвину ширины и высoты сooтветственнo */
+    }    
+}
+@media all and (max-width: 600px) {
+    .modal_div {
+       width: 550px;
+       margin-left: -275px; /* oтступaем влевo и вверх минус пoлoвину ширины и высoты сooтветственнo */
+    }    
+    .modalcontent .cnote{
+        overflow: scroll;
+        max-height: 450px;
+    }
+}
+@media all and (max-width: 412px) {
+    .modal_div {
+       width: 300px;
+       margin-left: -150px; /* oтступaем влевo и вверх минус пoлoвину ширины и высoты сooтветственнo */
+    }
+    .modalcontent .cnote{
+        max-height: 350px;
+        overflow: scroll;
+        text-align: left;
+    }
+}
+</style>
+<input type="hidden" id="course" name="course" value="{%COURSE%}">

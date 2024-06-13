@@ -1,0 +1,20 @@
+<table border="1" cellspacing="0" cellpadding="5">
+  <tr>
+    <th>Всего пользователей</th>
+    <th>Анонимов</th>
+    <th>Администраторов</th>
+    <th>Учебная часть</th>
+    <th>Руководителей курсов</th>
+    <th>Слушателей</th>
+  </tr>
+  {%LOOP%}
+  <tr>
+    <td>{{count}}</td>
+    <td>{{anon}}</td>
+    <td>{{adm}}</td>
+    <td>{{uch}}</td>
+    <td>{{moder}}</td>
+    <td>{{users}}</td>
+  </tr>
+  {%LOOP%}
+</table>

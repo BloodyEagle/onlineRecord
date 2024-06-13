@@ -1,0 +1,25 @@
+$('#dfield').hide();
+
+$('#changescan').on('click',function(){
+    if($('#changescan').prop( "checked" )){
+        $('#dfield').show();
+        $('#dfield :input').addClass('rfield');
+    } else {
+        $('#dfield').hide();
+        $('#dfield :input').prop('class', ''); 
+    }
+});
+
+
+
+$('#changefscan').on('click',function(){
+    if($('#changefscan').prop( "checked" )){
+        $('#ffield').show();
+        $('#ffield :input').addClass('rfield');
+    } else {
+        $('#ffield').hide();
+        $('#ffield :input').prop('class', ''); 
+    }
+});
+
+

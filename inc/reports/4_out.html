@@ -1,0 +1,26 @@
+<table border="1" cellspacing="0" cellpadding="5">
+  <tr>
+    <th>Район</th>
+    <th>Всего зарегистрировано</th>
+    <th>Городских</th>
+    <th>Сельских</th>
+    <th>Женщин</th>
+    <th>Мужчин</th>
+  </tr>
+  {%LOOP%}<tr>
+    <td>{{reg}}</td>
+    <td>{{count}}</td>
+    <td>{{ccount}}</td>
+    <td>{{vcount}}</td>
+    <td>{{fcount}}</td>
+    <td>{{mcount}}</td>
+  </tr>{%LOOP%}
+  <tr>
+    <td>Всего по РМ</td>
+    <td>{{Ucount}}</td>
+    <td>{{Uccount}}</td>
+    <td>{{Uvcount}}</td>
+    <td>{{Ufcount}}</td>
+    <td>{{Umcount}}</td>
+  </tr>
+</table>

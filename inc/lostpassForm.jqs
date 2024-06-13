@@ -1,0 +1,50 @@
+$("#snils").mask("999-999-999 99");
+$("#snils").mask("999-999-999 99");
+$("#phone").mask("+7(999)999-99-99");
+
+ //-------------------------------------------------------------------------------------------
+                        $(function(){
+                            $("form").submit(function() {// обрабатываем отправку формы   
+                                var error=0; // индекс ошибки
+                                var e = {
+                                            code: null,
+                                            message: null
+                                    };
+                                var snils = $("#snils").val();
+                                if(!validateSnils(snils, e)){
+                                    error=4;
+                                    $("#snils").css('border', 'red 2px solid').css('background-color','#DDAAAA');// устанавливаем рамку красного цвета
+                                    $("#snils").css('border', 'red 2px solid');// устанавливаем рамку красного цвета
+                                }
+                                
+                                var email = $("#email").val();
+                                if(!isValidEmailAddress(email)){
+                                    error=2;
+                                }
+                                
+                                $(".rfield").each(function() {// проверяем каждое поле в форме
+                                            if(!$(this).val()){// если в поле пустое
+                                                $(this).css('border', 'red 2px solid').css('background-color','#DDAAAA');// устанавливаем рамку красного цвета
+                                                error=1;// определяем индекс ошибки      
+                                            }
+                                            else{
+                                                $(this).css('border', 'gray 1px solid').css('background-color','');// устанавливаем рамку обычного цвета
+                                            }
+                                })
+                                //alert(error);
+                                if(error==0){ // если ошибок нет то отправляем данные
+                                    $("#messenger").hide();
+                                    return true;
+                                }
+                                else{
+                                if(error==1) var err_text = "Не все обязательные поля заполнены!";
+                                if(error==2)  var err_text="Введен некорректный e-mail!";
+                                if(error==4)  var err_text=e.message;
+                                $("#messenger").html(err_text);
+                                $("#messenger").fadeIn("slow");
+                                return false; //если в форме встретились ошибки , не  позволяем отослать данные на сервер.
+                                }
+                            })
+                        });
+                        //-------------------------------------------------------------------------------------------
+

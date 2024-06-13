@@ -1,0 +1,13 @@
+$('#scanfield').hide();
+
+$('#changescan').on('click',function(){
+    if($('#changescan').prop( "checked" )){
+        $('#scanfield').show();
+        $('#scanfield :input').addClass('rfield');
+    } else {
+        $('#scanfield').hide();
+        $('#scanfield :input').prop('class', ''); 
+    }
+});
+
+

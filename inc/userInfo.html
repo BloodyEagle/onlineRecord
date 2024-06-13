@@ -1,0 +1,314 @@
+	<script>
+function validateSnils(snils, error) {
+                        var result = false;
+                        if (typeof snils === 'number') {
+                                snils = snils.toString();
+                        } else if (typeof snils !== 'string') {
+                                snils = '';
+                        }
+                        if (!snils.length) {
+                                error.code = 1;
+                                error.message = 'СНИЛС пуст';
+                        } else if (!/^\d{3}-\d{3}-\d{3}\s\d{2}$/.test(snils)) {
+                                alert(/^\d{3}-\d{3}-\d{3}\s\d{2}$/.test('999-999-999 99'));
+                                error.code = 2;
+                                error.message = 'СНИЛС может состоять только из цифр';
+                        } else if (snils.length !== 14) {
+                                error.code = 3;
+                                error.message = 'СНИЛС может состоять только из 11 цифр';
+                        } else {
+                                var sum = 0;
+                                
+				sum += parseInt(snils[0])*9;
+                                sum += parseInt(snils[1])*8;
+                                sum += parseInt(snils[2])*7;
+                                sum += parseInt(snils[4])*6;
+                                sum += parseInt(snils[5])*5;
+                                sum += parseInt(snils[6])*4;
+                                sum += parseInt(snils[8])*3;
+                                sum += parseInt(snils[9])*2;
+                                sum += parseInt(snils[10])*1;
+
+            var checkDigit = 0;
+                                if (sum < 100) {
+                                        checkDigit = sum;
+                                } else if (sum > 101) {
+                                        checkDigit = parseInt(sum % 101);
+                                        if (checkDigit === 100) {
+                                                checkDigit = 0;
+                                        }
+                                }
+                                if (checkDigit === parseInt(snils.slice(-2))) {
+                                        result = true;
+                                } else {
+                                        error.code = 4;
+                                        error.message = 'Неправильное контрольное число СНИЛС';
+                                }
+                        }
+                        return result;
+}//validateSnils(snils, error=====================================================================
+
+function isValidEmailAddress(emailAddress) {
+        var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
+        return pattern.test(emailAddress);
+}//isValidEmailAddress(emailAddress)================================================================
+
+//var city = null;
+
+    $(document).ready(function(){
+                
+                	$("#phone").mask("+7(999)999-99-99");
+					$("#snils").mask("999-999-999 99");
+                        
+                          ( function( factory ) {
+                            "use strict";
+
+                            if ( typeof define === "function" && define.amd ) {
+
+                                    // AMD. Register as an anonymous module.
+                                    define( [ "../widgets/datepicker" ], factory );
+                            } else {
+
+                                    // Browser globals
+                                            factory( jQuery.datepicker );
+                                    }
+                            } )
+                          ( function( datepicker ) {
+                            "use strict";
+
+                            datepicker.regional.ru = {
+                                    closeText: "Закрыть",
+                                    prevText: "&#x3C;Пред",
+                                    nextText: "След&#x3E;",
+                                    currentText: "Сегодня",
+                                    monthNames: [ "Январь", "Февраль", "Март", "Апрель", "Май", "Июнь",
+                                    "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь" ],
+                                    monthNamesShort: [ "Янв", "Фев", "Мар", "Апр", "Май", "Июн",
+                                    "Июл", "Авг", "Сен", "Окт", "Ноя", "Дек" ],
+                                    dayNames: [ "воскресенье", "понедельник", "вторник", "среда", "четверг", "пятница", "суббота" ],
+                                    dayNamesShort: [ "вск", "пнд", "втр", "срд", "чтв", "птн", "сбт" ],
+                                    dayNamesMin: [ "Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб" ],
+                                    weekHeader: "Нед",
+                                    dateFormat: "dd.mm.yy",
+                                    firstDay: 1,
+                                    isRTL: false,
+                                    showMonthAfterYear: false,
+                                    yearSuffix: "" };
+                            datepicker.setDefaults( datepicker.regional.ru );
+
+                            return datepicker.regional.ru;
+
+                            } );
+
+                        $( ".date" ).datepicker();
+                        $( ".date" ).datepicker( "option", "changeYear", true ).datepicker( "option", "changeMonth", true );
+                        $( ".date" ).datepicker( "option", "maxDate", "+1w" );
+                        $( ".date" ).datepicker( "option", "yearRange", "1930:2030" )
+                            
+                        $('#region').change(function(){
+                            $('#citybox').show();
+                            if ($(this).val()==13){
+                                $('#regrm').show();
+                                $('#regrf').hide();
+                                var $this = $('#regionrm');
+                                var $selectedOption = $this.find('option:selected');
+                                var city = $selectedOption.data('city');
+                                if (city) {
+                                    $('#incity').prop('value',$(this).val());
+                                    $('#cityname').text(city);
+                                    $('#cityrm').show();
+                                    $('#incity').show();
+                                } else {
+                                    $('#incity').hide();
+                                    $('#cityrm').hide();
+                                    $('#city').removeAttr('disabled');
+                                    $('#cityrm').prop('checked', false);
+                                }
+                            } else{
+                                $('#regrm').hide();
+                                $('#cityrm').hide();
+                                $('#incity').hide();
+                                $('#regrf').css('display', 'flex');
+                            }
+                        });
+                        
+                        $('#regionrm').on( 'change', function(){
+                            var $this = $(this);
+                            var $selectedOption = $this.find('option:selected');
+                            var city = $selectedOption.data('city');
+                            if (city) {
+                                $('#incity').prop('value',$(this).val());
+                                $('#cityname').text(city);
+                                //$('#city').val(city);
+                                $('#incity').show();
+                            } else {
+                                $('#incity').hide();
+                            }
+                            $('#city').removeAttr('disabled');
+                            $('#cityrm').prop('checked', false);
+                        });
+                        
+                        //$('#city').addClass('rfield');
+                        
+                        $('#cityrm').on( 'change', function() {
+                            if ($(this).prop("checked")){
+                                //$('#city').removeClass();
+                                $('#city').val($('#cityname').text());
+                                $('#citybox').hide();
+                                $('#city').prop('class', '');
+                            } else{
+                                $('#citybox').show();
+                                $('#city').val('');
+                                $('#city').addClass('rfield');
+                            }
+                        });
+		
+		 	$('#changepass').change(function() {
+                            if ($(this).prop("checked")){
+                                $('#chpassblock').show();
+                                $('#pass1').removeAttr('disabled');
+				$('#pass2').removeAttr('disabled');
+				$('#pass1').addClass('rfield');
+				$('#pass2').addClass('rfield');
+                            } else{
+                                $('#chpassblock').hide();
+                           	$('#pass1').prop('disabled', 'disabled');
+				$('#pass2').prop('disabled', 'disabled');
+				$('#pass1').prop('class', '');
+				$('#pass2').prop('class', '');
+                            }
+                        });
+                        
+                        
+                        //-------------------------------------------------------------------------------------------
+                        $(function(){
+                            $("form").submit(function() {// обрабатываем отправку формы   
+                                var error=0; // индекс ошибки
+                                var e = {
+                                            code: null,
+                                            message: null
+                                    };
+                                var snils = $("#snils").val();
+                                if(!validateSnils(snils, e)){
+                                    error=4;
+                                    $("#snils").css('border', 'red 2px solid').css('background-color','#DDAAAA');// устанавливаем рамку красного цвета
+                                    $("#snils").css('border', 'red 2px solid');// устанавливаем рамку красного цвета
+                                }
+                                
+                                var email = $("#email").val();
+                                if(!isValidEmailAddress(email)){
+                                    error=2;
+                                }
+                                
+                                //провека совпадения паролей
+                                var pas1 = $("#pass1").val();
+                                var pas2 = $("#pass2").val();
+                                if(pas1!=pas2){
+                                    error=3;
+                                    $("#pass1").css('border', 'red 2px solid').css('background-color','#DDAAAA');// устанавливаем рамку красного цвета
+                                    $("#pass2").css('border', 'red 2px solid');// устанавливаем рамку красного цвета
+                                }
+                                $(".rfield").each(function() {// проверяем каждое поле в форме
+                                            if(!$(this).val()){// если в поле пустое
+                                                $(this).css('border', 'red 2px solid').css('background-color','#DDAAAA');// устанавливаем рамку красного цвета
+                                                error=1;// определяем индекс ошибки      
+                                            }
+                                            else{
+                                                $(this).css('border', 'gray 1px solid').css('background-color','');// устанавливаем рамку обычного цвета
+                                            }
+                                })
+                                //alert(error);
+                                if(error==0){ // если ошибок нет то отправляем данные
+                                    $("#messenger").hide();
+                                    return true;
+                                }
+                                else{
+                                if(error==1) var err_text = "Не все обязательные поля заполнены!";
+                                if(error==2)  var err_text="Введен некорректный e-mail!";
+                                if(error==3)  var err_text="Пароли не совпадают!";
+                                if(error==4)  var err_text=e.message;
+                                $("#messenger").html(err_text);
+                                $("#messenger").fadeIn("slow");
+                                return false; //если в форме встретились ошибки , не  позволяем отослать данные на сервер.
+                                }
+                            })
+                        });
+                        //-------------------------------------------------------------------------------------------
+		});
+	</script>
+        <style type="text/css">
+#stage {
+                width: 25px;
+}
+.passrow{
+    margin-left: -90px;
+    padding-bottom: 10px;
+}
+#pvidan{
+    width: 98%;
+}
+.kv{
+    text-align: center;
+}
+#rowpscan{
+   padding-top: 10px;
+}
+p.c{
+    text-align: center;
+}
+#region {
+    max-width: 300px;
+}
+
+        </style>
+    
+        <p align="center">Заполните поля, расположенные ниже, информацией.<br />
+        Внимание! Поля, помеченые звездочкой [<span style="color: red;">*</span>] - обязательны для заполнения!</p>
+        <div class="form_box">
+	<form action="/?act=savehuman" method="post" class="rf" enctype="multipart/form-data">
+            <input type="hidden" value="{%USERID%}" name="id" id="id">
+            <div class="formrow shadow round5border dgraybg w100ps vert center">
+                <div class="horiz tabfield"><input type="text" id="lastname" name="lastname" placeholder="Пупкин" class="rfield" value="{%LASTNAME%}"><label for="lastname" class="field">Введите свою фамилию <span style="color: red;">*</span></label></div>
+                <div class="horiz tabfield"><input type="text" id="firstname" name="firstname" placeholder="Василий" class="rfield" value="{%FIRSTNAME%}"><label for="firstname" class="field">Введите своё имя<span style="color: red;">*</span></label></div>
+                <div class="horiz tabfield"><input type="text" id="fathername" name="fathername" placeholder="Иванович" class="rfield" value="{%FATHERNAME%}"><label for="fathername" class="field">Введите своё отчество<span style="color: red;">*</span></label></div>
+                <div class="horiz tabfield"><input type="text" name="birthday" id="birthday" autocomplete="off" placeholder="30.11.1979" class="rfield date"  value="{%BIRTHDAY%}"><label for="birthday" class="field">Введите дату своего рождения<span style="color: red;">*</span></label></div>
+                <div class="horiz tabfield">{%SEXLIST%}<label for="sex" class="field">Какого вы пола?<span style="color: red;">*</span></label></div>
+            </div>
+            <div class="formrow shadow round5border dgraybg w100ps vert center">
+                <div class="horiz tabfield"><input type="text" name="snils" id="snils" placeholder="000-000-000 00" size="14" maxlength="14" class="rfield" value="{%SNILS%}"><label for="snils" class="field">Введите номер своего СНИЛС<span style="color: red;">*</span></label></div>
+                <span>{%SSCAN%}</span>
+                <div class="horiz tabfield" id="scanfield"><input type="file" name="sscan" id="sscan"><label for="sscan" class="field" >Прикрепите скан СНИЛС. Максимальный объем файла - 5 Мб</label></div>
+            </div>
+            <div class="formrow shadow round5border dgraybg w100ps vert center">
+                <p class="c"><label for="region" class="field">Выберите регион проживания<span style="color: red;">*</span></label><br>{%REGIONLIST%}</p>
+                <p class="c" id="regrm"><label for="regionrm" class="field" {%REGIONRM%}>Выберите район Мордовии<span style="color: red;">*</span></label><br />{%REGRMLIST%}</p>
+                <div class="horiz tabfield hidden" id="regrf"><input type="text" name="distinct" id="distinct" value="{%DISTINCT%}"><label for="distinct" class="field">Район </label></div>
+                <div class="horiz tabfield"><input type="checkbox" name="cityrm" value="on" id="cityrm"><label for="cityrm" class="field" id="incity" style="justify-content: left !important;" {%CITYRM%}>&nbsp;Я проживаю в&nbsp;<span id="cityname">{%CITY%}</span></label></div>
+                <div class="horiz tabfield" id="citybox" {%CITYBOX%}><input type="text" name="city" id="city" placeholder="c. Алово" class="rfield" value="{%CITY%}"><label for="city" class="field">Введите название своего населенного пункта<span style="color: red;">*</span></label></div>
+                <div class="horiz tabfield"><input type="text" name="address" id="address" value="{%ADDRESS%}" class="rfield"><label for="address" class="field">Улица, дом, квартира<span style="color: red;">*</span></label></div>
+            </div>
+            <div class="formrow shadow round5border dgraybg w100ps vert center">
+                    <div class="horiz tabfield"><input type="text" name="stage" id="stage" placeholder="0" class="shortfield rfield" value="{%STAGE%}"><label class="field">Каков ваш полный педагогический стаж? (если стажа пока нет, введите 0)<span style="color: red;">*</span></label></div>
+            </div>
+            <div id="auth" class="formrow shadow round5border dgraybg w100ps vert center">
+                <p>В личный кабинет можно будет войти по адресу e-mail или по номеру телефона</p>
+                <div class="horiz tabfield"><input type="text" name="phone" id="phone" placeholder="+7(999)333-22-11" class="rfield"  value="{%PHONE%}"><label for="phone" class="field">Введите свой телефон<span style="color: red;">*</span></label></div>
+                <div class="horiz tabfield"><input type="text" name="email" id="email" placeholder="vpupkin@ya.ru" class="rfield" value="{%EMAIL%}"><label for="email" class="field">Введите свой адрес e-mail (на него придет письмо с подтверждением регистрации) <span style="color: red;">*</span></label></div>
+		<div class="horiz tabfield"><input type="checkbox" name="changepass" value="on" id="changepass"><label for="changepass" class="field" style="justify-content: left !important;">&nbsp;Сменить пароль</label></div>
+		<span style="display: none;" id="chpassblock">
+                    <div class="horiz tabfield"><input type="password" name="pass1" id="pass1" placeholder="G4#2h&%rQ2"  disabled><label for="pass1" class="field">Придумайте и введите сложный и длинный пароль <span style="color: red;">*</span></label></div>
+                    <div class="horiz tabfield"><input type="password" name="pass2" id="pass2" placeholder="G4#2h&%rQ2" disabled><label for="pass2">И еще раз, для проверки <span style="color: red;">*</span></label></div>
+		</span>
+
+            </div>
+           
+             
+             <div class="formrow w100ps vert center">
+                 <div id="messenger"></div>
+             </div>
+            <div class="formrow w100ps vert center">
+            <input type="submit" id="save" value="Отправить данные" class="btn_submit disabled">
+            </div>
+        </form>
+        </div>
+    

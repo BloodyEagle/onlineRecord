@@ -1,0 +1,127 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{%TITLE%}</title>
+          <link rel="stylesheet" href="/inc/jquery-ui.min.css">
+          <link href="/inc/style.css" rel="stylesheet" type="text/css">
+          <link href="/css/all.css" rel="stylesheet">
+        <script src="/inc/jquery-3.6.3.min.js"></script>
+	    <script src="/inc/jquery.maskedinput.min.js" type="text/javascript"></script>
+        <script  type="text/javascript" src="/inc/tooltips.js"></script>
+        <script src="/inc/jquery-ui.min.js"></script>
+        <!-- Динамически загружаемые заголовки -->
+        {%HEADERS%}
+        <!-- конец динамически загружаемых заголовков-->
+	<script>
+/* Динамически загружаемые JS скрипты */
+{%JSCODE%}	
+/* Конец динамически загружаемых JS скриптов */	
+		$(document).ready(function(){
+			                        
+                        /* зaсунем срaзу все элементы в переменные, чтoбы скрипту не прихoдилoсь их кaждый рaз искaть при кликaх */
+                        var overlay = $('#overlay'); // пoдлoжкa, дoлжнa быть oднa нa стрaнице
+                        var open_modal = $('.open_modal'); // все ссылки, кoтoрые будут oткрывaть oкнa
+                        var close = $('.modal_close, #overlay'); // все, чтo зaкрывaет мoдaльнoе oкнo, т.е. крестик и oверлэй-пoдлoжкa
+                        var ok = $('.modal_ok'); // кнопка Ок
+                        var modal = $('.modal_div'); // все скрытые мoдaльные oкнa
+
+                        open_modal.on('click', function(event){ // лoвим клик пo ссылке с клaссoм open_modal
+                            event.preventDefault(); // вырубaем стaндaртнoе пoведение
+                            var div = $(this).attr('href'); // вoзьмем стрoку с селектoрoм у кликнутoй ссылки
+                            overlay.fadeIn(400, //пoкaзывaем oверлэй
+                            function(){ // пoсле oкoнчaния пoкaзывaния oверлэя
+                                $(div) // берем стрoку с селектoрoм и делaем из нее jquery oбъект
+                                .css('display', 'block')
+                                .animate({opacity: 1, top: '30%'}, 200); // плaвнo пoкaзывaем
+                            });
+                        });
+
+                        close.on('click', function(){ // лoвим клик пo крестику или oверлэю
+                            modal // все мoдaльные oкнa
+                            .animate({opacity: 0, top: '45%'}, 200, // плaвнo прячем
+                            function(){ // пoсле этoгo
+                                $(this).css('display', 'none');
+                                overlay.fadeOut(400); // прячем пoдлoжку
+                            });
+                        });
+                        
+                        $(document).keyup(function(e) {
+                                if ((e.key === "Escape" || e.keyCode === 27) && modal.css('display') == 'block') {
+                                        close.click();
+                                }
+                        });
+                        
+                        ok.on('click', function(){ // лoвим клик пo Ok
+                            modal // все мoдaльные oкнa
+                            .animate({opacity: 0, top: '45%'}, 200, // плaвнo прячем
+                            function(){ // пoсле этoгo
+                                $(this).css('display', 'none');
+                                overlay.fadeOut(400); // прячем пoдлoжку
+                            });
+                        });
+                        
+                        $('.copy-btn').on('click',function(){
+                             value = $(this).data('copy');
+                            var $temp = $("<input>");
+                            $('body').append($temp);
+                            $temp.val(value).select();
+                            document.execCommand("copy");
+                            $(this).animate({backgroundColor: "#0A0"}, 300).animate({backgroundColor: "transparent"}, 1000);
+                            $temp.remove();
+                            
+                        });
+
+/* Динамически загружаемые jQuery скрипты */                        
+                        {%JQCODE%}
+/* Конец динамически загружаемых jQuery скриптов */	                        
+		});
+	</script>
+</head>
+
+<body>
+    <noscript><p>Ваш браузер не поддерживает скрипты или они отключны! К сожалению без скриптов вы не сможете пользоваться этим сайтом.</p></noscript>
+    
+    <div class="container">
+        <div class="header"><p><a href="/"><img src="/img/logo21.png" width="300"></a></p><p>ГБУ ДПО РМ «Центр непрерывного повышения профессионального мастерства педагогических работников – «Педагог 13.ру»</p></div>
+            
+            <div class="nav">
+                <ul class="navigation">
+                    <li><a href="/" title="Запись на курсы" class="show-tooltip"><i class="fa-light fa-ballot-check"></i> Запись на курсы</a></li>
+                    <li><a href="/?act=help" title="Справка" class="show-tooltip"><i class="fa-light fa-comments-question-check"></i> Помощь</a></li>
+                    {%ADMIN%}
+                    {%USERS%}
+                    {%DOCS%} 
+                    {%REPORTS%} 
+                    {%PROFILE%}
+                    <!--{%PFRO%}-->
+                    {%LOGIN%}
+                </ul>
+            </div>
+            
+            <div class="content">
+                
+                <div id="container" class="container round5border shadow graybg">
+                    <div id="error_messages" class="errormessage"  {%SHOWERRORS%}>{%ERRORS%}</div>
+                    {%CONTENT%}
+                </div>
+
+                <!--  модальное окно  -->
+                <div id="modal1" class="modal_div">
+                    <button class="modal_close" title="Закрыть окно">X</button>
+               <div class="modalcontent">{%MODAL CONTENT%}</div>
+                </div>
+
+                <!--  подложка на весь экран  -->
+                <div id="overlay"></div>
+            </div>
+            <!-- <div class="wrap">
+                <div class="item">i1</div>
+                <div class="item">i2</div>
+                <div class="item">i3</div>
+            </div> -->
+            <div class="footer"><p>Система онлайн-записи на&nbsp;курсы</p><p>&COPY; ГБУ&nbsp;ДПО&nbsp;РМ &laquo;ЦНППМ&nbsp;&laquo;Педагог 13.ру&raquo;. 2022&nbsp;г.</p><p>Если у вас возникли проблемы при регистрации или при входе в свой личный кабинет, или же при записи на курс, то все вопросы можно задать в WhatsApp чате - <a href="https://chat.whatsapp.com/EhLB7fglWzEL5DtUpnXx8u" target="_blank" style="color: red !important;">тут</a></p></div>
+        </div>
+</body>
+</html>

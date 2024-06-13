@@ -1,0 +1,141 @@
+	<script>
+    $(document).ready(function(){
+                
+                          ( function( factory ) {
+                            "use strict";
+
+                            if ( typeof define === "function" && define.amd ) {
+
+                                    // AMD. Register as an anonymous module.
+                                    define( [ "../widgets/datepicker" ], factory );
+                            } else {
+
+                                    // Browser globals
+                                            factory( jQuery.datepicker );
+                                    }
+                            } )
+                          ( function( datepicker ) {
+                            "use strict";
+
+                            datepicker.regional.ru = {
+                                    closeText: "Закрыть",
+                                    prevText: "&#x3C;Пред",
+                                    nextText: "След&#x3E;",
+                                    currentText: "Сегодня",
+                                    monthNames: [ "Январь", "Февраль", "Март", "Апрель", "Май", "Июнь",
+                                    "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь" ],
+                                    monthNamesShort: [ "Янв", "Фев", "Мар", "Апр", "Май", "Июн",
+                                    "Июл", "Авг", "Сен", "Окт", "Ноя", "Дек" ],
+                                    dayNames: [ "воскресенье", "понедельник", "вторник", "среда", "четверг", "пятница", "суббота" ],
+                                    dayNamesShort: [ "вск", "пнд", "втр", "срд", "чтв", "птн", "сбт" ],
+                                    dayNamesMin: [ "Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб" ],
+                                    weekHeader: "Нед",
+                                    dateFormat: "dd.mm.yy",
+                                    firstDay: 1,
+                                    isRTL: false,
+                                    showMonthAfterYear: false,
+                                    yearSuffix: "" };
+                            datepicker.setDefaults( datepicker.regional.ru );
+
+                            return datepicker.regional.ru;
+
+                            } );
+
+                        $( "#passport" ).show();
+                        
+                        $( ".date" ).datepicker();
+                        $( ".date" ).datepicker( "option", "changeYear", true ).datepicker( "option", "changeMonth", true );
+                        $( ".date" ).datepicker( "option", "maxDate", "+1w" );
+                        $( ".date" ).datepicker( "option", "yearRange", "1930:2030" )
+                        
+                        
+                        $('#accept').on('click',function() {
+                            
+                            if ($(this).prop("checked")){
+                                $(this).val('accept');
+                            } else {
+                                $(this).val('');
+                            }
+                        });
+                        
+                        //-------------------------------------------------------------------------------------------
+                        $(function(){
+                            $("form").submit(function() {// обрабатываем отправку формы   
+                                var error=0; // индекс ошибки
+                                var e = {
+                                            code: null,
+                                            message: null
+                                    };
+                                $(".rfield").each(function() {// проверяем каждое поле в форме
+                                            if(!$(this).val()){// если в поле пустое
+                                                $(this).css('border', 'red 2px solid').css('background-color','#DDAAAA');// устанавливаем рамку красного цвета
+                                                error=1;// определяем индекс ошибки      
+                                            }
+                                            else{
+                                                $(this).css('border', 'gray 1px solid').css('background-color','');// устанавливаем рамку обычного цвета
+                                            }
+                                })
+                                //alert(error);
+                                if(error==0){ // если ошибок нет то отправляем данные
+                                    $("#messenger").hide();
+                                    return true;
+                                }
+                                else{
+                                if(error==1) var err_text = "Не все обязательные поля заполнены!";
+                                $("#messenger").html(err_text);
+                                $("#messenger").fadeIn("slow");
+                                return false; //если в форме встретились ошибки , не  позволяем отослать данные на сервер.
+                                }
+                            })
+                        });
+                        //-------------------------------------------------------------------------------------------
+		});
+	</script>
+        <style type="text/css">
+            .passrow{
+                margin-left: -90px;
+                padding-bottom: 10px;
+            }
+            #pvidan{
+                width: 98%;
+            }
+            .kv{
+                text-align: center;
+            }
+            #rowpscan{
+               padding-top: 10px;
+            }
+        </style>
+        <p align="center">Заполните поля, расположенные ниже, информацией.<br />
+        Внимание! Поля, помеченые звездочкой [<span style="color: red;">*</span>] - обязательны для заполнения!</p>
+        <div class="form_box">
+	<form action="/?act=savepassport" method="post" class="rf" enctype="multipart/form-data">
+            <input type="hidden" name="MAX_FILE_SIZE" value="5242880" />
+            <input type="hidden" name="id" id="id" value="{%PASSID%}" />
+            <div  id="passport" class="formrow shadow round5border dgraybg w100ps vert center">
+                 <h4>Данные паспорта</h4>
+                 <div class="horiz tabfield">{%CITIZENSHIPLIST%}<label for="citizenship" class="field">Выберите ваше гражданство</label></div>
+                 <p>Введите данные своего паспорта</p>
+                 <div class="center passrow">Серия и номер&nbsp;<input type="text" id="pseries" name="pseries" class="shortfield" size="2" placeholder="8903" value="{%PSERIES%}">&nbsp;&mdash;&nbsp;<input type="text" id="pnumber" name="pnumber" class="medfield" placeholder="000000" size="4" value="{%PNUMBER%}"></div>
+                 <div class="horiz tabfield"><input type="text" name="pdata" id="pdata" autocomplete="off" class="shortfield date" style="margin-bottom: 10px;" value="{%PDATE%}"><label for="pdata" class="field">Дата выдачи&nbsp;</label></div>
+                 <div class="w100ps kv">Кем выдан<br /><input type="text" name="pvidan" id="pvidan" class="longfield" value="{%PINFO%}"></div>
+                <span id="rowpscan">{%PSCAN%}</span>
+                <div class="horiz tabfield" id="scanfield"><input type="file" name="pscan" id="pscan"><label for="pscan" class="field">Прикрепите скан паспорта (страницу с фото).<br>Максимальный объем файла - 5 Мб</label></div>
+            </div>
+            
+            	<div class="passport" style="display: block">
+                                    <label class="field"><span style="color: red;">*</span><input type="checkbox" name="accept" value="" class="rfield" id="accept">&nbsp;Я даю добровольное согласие на обработку моих личных данных. Более подробно с политикой обработки информации вы можете ознакомится <a href="#">перейдя по этой ссылке.</a></label>
+		</div>
+            
+             
+             <div class="formrow w100ps vert center">
+                 <div id="messenger"></div>
+             </div>
+            
+            <div class="formrow w100ps vert center">
+            <input type="submit" id="save" value="Отправить данные" class="btn_submit disabled">
+            </div>
+            
+        </form>
+        </div>
+    

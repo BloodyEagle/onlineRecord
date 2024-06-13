@@ -1,0 +1,483 @@
+html, body {
+    margin: 0;
+    padding: 10px;
+    background-color: #AAAAAA;
+    line-height: 1.5em;
+}
+#nav {
+    text-align: center;
+}
+h3 {
+    margin-left: -300px;
+    text-align: right;
+}
+#human h3 {
+    text-align: center;
+    margin: 0;
+}
+#passheader {
+    text-align: center;
+    margin: 0;
+}
+.button{
+    display: inline-block; 
+    background-color: #EEE; 
+    padding-bottom: 3px; 
+    padding-left: 5px; 
+    padding-right: 5px;
+    border-color: #444;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.button:hover{
+    background-color: #DDD; 
+    box-shadow: -2px -2px 2px 0px #000000 inset;
+}
+.field{
+    display: block;
+    padding: 0.3em;
+}
+.center{
+    text-align: center;
+    justify-content: center;
+}
+.shortfield{
+    width: 3em;
+}
+.medfield{
+    width: 6em;
+}
+.longfield{
+    width: 90%;
+}
+.maxwidth{
+    width: 100%;
+}
+.wrap{
+    display: block;
+    margin-left: 50%;
+}
+.parent {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    
+    justify-content: center; 
+    overflow: auto;   
+}
+.сblock {
+    background-color: #FFF;
+    display: flex;
+}
+.passport{
+    display: none;
+    margin: 5px;
+    border: 1px solid #000;
+    border-radius: 5px;
+    margin-left: -300px;
+    max-width: 600px;
+}
+.passportblock{
+    margin: 5px;
+    padding: 10px;
+    border: 1px solid #555;
+    border-radius: 10px;
+    margin-left: -350px;
+    max-width: 700px;
+    line-height: 1.5em;
+}
+#passport{
+    background-color: #CCBBBB;
+}
+#diploma{
+    background-color: #BBBBCD;
+}
+#work{
+    background-color: #BBCCBB;
+}
+#messenger{
+    background-color: #FF7777;
+    /*max-width: 500px;*/
+    margin: 10px;
+    margin-left: -250px;
+    border: 2px dashed #FF0000;
+    display: none;
+}
+.errormessage{
+	background-color: #FE4E51;
+	border: dashed red 2px;
+	align-content: center;
+	text-align: center;
+}
+.date{
+    width: 5em;
+}
+.custom-checkbox {
+	position: relative;
+	cursor: pointer;
+	line-height: 24px;
+}
+.custom-checkbox input {
+	position: absolute;
+	left: -9999px;
+}
+.custom-checkbox-button {
+	display: inline-block;
+	margin: 0 15px;
+	width: 50px;
+	border-radius: 12px;
+	background: rgba(255, 255, 255, 0.5);
+	height: 24px;
+	position: relative;
+	bottom: -4px;
+	cursor: pointer;
+}
+.custom-checkbox-button:before {
+	background: #fff;
+	content: "";
+	width: 26px;
+	height: 26px;
+	border-radius: 50%;
+	position: absolute;
+	top: -1px;
+	left: -1px;
+	-webkit-box-shadow: 0px 0px 1px 0px rgba(44, 77, 138, 0.3), 0px 7px 8.55px 0.45px rgba(22, 44, 84, 0.15);
+	        box-shadow: 0px 0px 1px 0px rgba(44, 77, 138, 0.3), 0px 7px 8.55px 0.45px rgba(22, 44, 84, 0.15);
+	-webkit-transition: 0.2s;
+	        transition: 0.2s;
+}
+.custom-checkbox-button:after {
+	content: "";
+	width: 12px;
+	height: 12px;
+	position: absolute;
+	background: #1967c3;
+	border-radius: 50%;
+	top: 6px;
+	left: 6px;
+	-webkit-box-shadow: inset 0px 2px 0px 0px rgba(0, 0, 0, 0.15);
+	        box-shadow: inset 0px 2px 0px 0px rgba(0, 0, 0, 0.15);
+	-webkit-transition: 0.2s;
+	        transition: 0.2s;
+}
+.custom-checkbox.checked .custom-checkbox-button:before {
+	left: 25px;
+}
+.custom-checkbox.checked .custom-checkbox-button:after {
+	left: 32px;
+	background: #1967c3;
+}
+.mw {
+    display: inline-block;
+    background-image: url(../img/mw32.png);
+    width: 8px;
+    height: 16px;
+    content: '<img src="./../img/1x1.gif">';
+    vertical-align: bottom;
+    
+}
+.man{
+    background-position: top right;
+}
+.woman{
+    background-position: top left;
+}
+#left {
+  float: left ;
+  width: 50% ;
+  min-width: 400px;
+  background-color: green;
+}
+#right {
+  float: left ;
+  width: 50% ;
+  min-width: 400px;
+  background-color: blue;
+}
+.editicon {
+    float: right;
+    padding: 5px;
+}
+.addicon {
+    position: relative;
+    top: 10px;
+    padding: 5px;
+}
+.ochecked {
+    background-image: url(../img/checked.png);
+    background-repeat: no-repeat;
+    background-position: 98% 96%;
+}
+.scandoc {
+    display: block;
+    float: right;
+    z-index: 5;
+    position: relative;
+    top: 90%;
+    right: 40px;
+    bottom: 32px;
+}
+.copy-btn {
+    cursor: pointer;
+}
+span.show-tooltip-text {
+			display: none;
+			position: absolute;
+			font-size: 0.8em;
+                        background-color: #ffffea;
+                        border: #000000 solid thin;
+                        border-radius: 5px;
+			padding: 6px;
+			padding-left: 12px;
+			padding-right: 12px;
+			color: #1a3070;
+                        z-index: 10;
+}
+.icobtn {
+    display: inline-block;
+    cursor: pointer;
+    width: 16px;
+    height: 16px;
+    background-image: url(../img/icons1.png);
+    background-repeat: no-repeat;
+    vertical-align: bottom;
+}
+.ibadduser {
+    background-position-x: 0px;
+    background-position-y: 0px;
+}
+.ibdeluser {
+    background-position-x: -16px;
+    background-position-y: 0px;
+}
+.ibeditcat {
+    background-position-x: -128px;
+    background-position-y: -15px;
+}
+.ibaddsubcat {
+    background-position-x: -80px;
+    background-position-y: -0px;
+}
+.ibaddcourse {
+    background-position-x: 0px;
+    background-position-y: -16px;
+}
+.ibdelcat {
+    background-position-x: -32px;
+    background-position-y: -16px;
+}
+
+/* Модальное окно */
+.modal_div {
+   width: 400px;
+   height: auto; /* Рaзмеры дoлжны быть фиксирoвaны */
+   border-radius: 8px;
+   border: 2px #000 solid;
+   background: #fff;
+   position: fixed; /* чтoбы oкнo былo в видимoй зoне в любoм месте */
+   top: 20%; /* oтступaем сверху 45%, oстaльные 5% пoдвинет скрипт */
+   left: 50%; /* пoлoвинa экрaнa слевa */
+   margin-top: -150px;
+   margin-left: -200px; /* oтступaем влевo и вверх минус пoлoвину ширины и высoты сooтветственнo */
+   display: none; /* в oбычнoм сoстoянии oкнa не дoлжнo быть */
+   opacity: 0; /* пoлнoстью прoзрaчнo для aнимирoвaния */
+   z-index: 5; /* oкнo дoлжнo быть нaибoлее бoльшем слoе */
+   padding: 20px 10px;
+}
+/* Кнoпкa зaкрыть для тех ктo в тaнке) */
+.modal_close {
+   width: 21px;
+   height: 21px;
+   position: absolute;
+   top: 10px;
+   right: 10px;
+   cursor: pointer;
+   text-align: center;
+   display: block;
+}
+/* Кнoпкa зaкрыть для тех ктo в тaнке) */
+.modal_ok {
+   width: 40%;
+   position: absolute;
+   bottom: 10px;
+   left: 50%;
+   cursor: pointer;
+   display: block;
+   margin-left: -20%;
+}
+/* Пoдлoжкa */
+#overlay {
+   z-index:3; /* пoдлoжкa дoлжнa быть выше слoев элементoв сaйтa, нo ниже слoя мoдaльнoгo oкнa */
+   position:fixed; /* всегдa перекрывaет весь сaйт */
+   background-color:#000; /* чернaя */
+   opacity:0.5; /* нo немнoгo прoзрaчнa */
+   -moz-opacity:0.8; /* фикс прозрачности для старых браузеров */
+   filter:alpha(opacity=50);
+   width:100%;
+   height:100%; /* рaзмерoм вo весь экрaн */
+   top:0; /* сверху и слевa 0, oбязaтельные свoйствa! */
+   left:0;
+   cursor:pointer;
+   display:none; /* в oбычнoм сoстoянии её нет) */
+}
+
+/* список курсов, Дерево*/
+.treeline, .treeline ul, .treeline li {
+   margin: 0; padding: 0; line-height: 1.5; list-style: none;
+}
+.treeline ul {margin: 0 0 0 15px; /* отступ вертикальной линии */}
+.treeline > li:not(:only-child), .treeline li li {
+   position: relative;
+   padding: 3px 0 0 20px; /* отступ текста */
+}
+/* Стиль вертикальной линии */
+.treeline li:not(:last-child) { border-left: 1px solid #000;}
+/* Стили горизонтальной линии*/  
+.treeline li li:before, .treeline > li:not(:only-child):before {
+   content: ""; position: absolute; top: 0; left: 0;
+   width: 1.1em; height: .9em; border-bottom:1px solid #000;
+}
+/* Вертикальная линия последнего пункта в списка */  
+.treeline li:last-child:before {
+   width: calc(1.1em - 1px); border-left: 1px solid #000;
+}
+
+.js-select2 {
+    width: 96%;
+}
+form div {
+    margin: 5px 0 5px 0;
+    border: 1px solid #555;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    padding: 5px;
+    background-color: #bbb;
+}
+#coverimg{
+    display: block;
+    width: 300px;
+    height: 180px;
+    background-color: #999;
+    background-position: center center;
+    background-image: url(/img/photo.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    border: 1px solid #555;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    margin: auto;
+}
+
+.container {
+  display: flex;
+  flex-flow: row wrap;
+  align-content: center;
+	align-items: center;
+	justify-content: center;
+    /* Optional */
+  background-color: #f7f7f7;
+  border-radius: 5px;
+  padding: 0;
+  margin: 0;
+}
+.courseitem {
+	display: flex;
+	flex-flow: column nowrap;
+  width: 500px;
+  /* Optional */
+  position: relative;
+  margin: 5px;
+  border-radius: 5px;
+  background-color: #a1cbfa;
+  border: 1px solid #4290e2;
+  box-shadow: 0 2px 2px rgba(0,90,250,0.05),
+    0 4px 4px rgba(0,90,250,0.05),
+    0 8px 8px rgba(0,90,250,0.05),
+    0 16px 16px rgba(0,90,250,0.05);
+  color: #fff;
+  /*padding: 15px;*/
+  box-sizing: content-box;
+}
+.courseimg{
+        display: flex;
+	width: 500px;
+	height: 300px;
+}
+.courseitem img {
+	object-fit: cover;
+        width: 500px;
+        height: 300px;;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+        margin: auto;
+
+}
+.courseimg a{
+	/*position: relative;*/
+        /*top: -300px;;*/
+        display: block;
+        position: relative;
+        margin: auto;
+        width: 500px;
+        margin-left:  -100%;
+        /*height: 300px;*/
+        text-shadow: 3px 3px 5px black, 
+            1px 0 1px #000, 
+            0 1px 1px #000, 
+            -1px 0 1px #000, 
+            0 -1px 1px #000;
+        text-align: center;
+        color: white;
+        font-size: 1.5em;
+        font-weight: bold;
+        text-decoration: none;
+}
+.courseitem :hover{
+	filter: grayscale(100%);
+}
+.courseimg a:hover{
+    color: #DDD;
+}
+/* Средние экраны */
+@media all and (max-width:1023px){
+	.courseitem {
+		width: 350px;
+	}
+	.courseimg{
+		width: 350px;
+		height: 210px;
+	}
+	.courseitem img {
+			width: 350px;
+			height: 210px;
+	}
+        .courseimg a{
+        width: 350px;
+        }
+}
+
+
+/* Мелкие экраны */
+@media all and (max-width:412px) and (max-device-width:412px){
+	.courseitem {
+		width: 300px;
+	}
+	.courseimg{
+		width: 300px;
+		height: 200px;
+	}
+	.courseitem img {
+			width: 300px;
+			height: 200px;
+	}
+        .courseimg a{
+        width: 350px;
+        }
+
+}

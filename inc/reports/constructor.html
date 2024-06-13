@@ -1,0 +1,36 @@
+<script>
+    $(document).ready(function() {
+        $('#tables').select2({placeholder: 'Щелкните в это поле'});
+
+        $('#tables').change(function () {
+            alert($(this).val());
+        });
+    });
+</script>
+<div class="tablesbox">
+    <form action="/?act=test&get=fieldslist" method="post">
+        <label for="tables">Выберите таблицы</label>
+        <select id="tables" name="tables[]" multiple="multiple">
+            <option value="citizenship">Гражданство</option>
+            <option value="coursegroup">Группы слушателей(номера и даты приказов)</option>
+            <option value="diplom">Дипломы</option>
+            <option value="dpp">ДПП</option>
+            <option value="applications">Заявки на курсы</option>
+            <option value="finsource">Источник финансирования</option>
+            <option value="predmet">Категория слушателя</option>
+            <option value="course">Курсы</option>
+            <option value="work">Места работы</option>
+            <option value="pass">Паспорта</option>
+            <option value="sex">Пол слушателя</option>
+            <option value="ccategory">Разделы курсов</option>
+            <option value="distinct">Районы РМ</option>
+            <option value="regions">Регионы РФ</option>
+            <option value="mode">Режимы отрыва от производства</option>
+            <option value="users">Слушатели</option>
+            <option value="appstatus">Статусы заявок</option>
+            <option value="education_level">Уровень образования</option>
+            <option value="form">Формы обучения</option>
+        </select>
+        <input type="submit" value="Send">
+    </form>
+</div>

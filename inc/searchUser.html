@@ -1,0 +1,28 @@
+<style>
+  #suserbox {
+    margin-top: 10px;
+    height: 450px;
+    overflow-y: auto;
+    scroll-snap-type: y;
+  }
+</style>
+<script>
+$(document).on('click', '#selall', function () {
+    if ($(this).is(':checked')) {
+      $('input[name^=user]:checkbox:not(:disabled)').prop('checked', true);
+    } else {
+      $('input[name^=user]:checkbox').prop('checked', false);
+    }
+  });
+
+
+</script>
+<form id="suserform" method="post">
+  <input type="hidden"  name="cat" value="users">
+  <input type="hidden"  name="type" value="searchuser">
+  <label for="searchtext">Поиск пользователя:<br>
+    <input type="text" name="searchtext" id="searchtext" data-hideadm="0" class="w100ps" placeholder="алекса, иванов,петров, 072-333-512 00" maxlength="80">
+    <small class="blue">минимум 3 символа, можно искать сразу несколько пользователей, разделяя поисковый текст запятыми<br>поиск ведется по ФИО, СНИЛС, телефону и e-mail</small>
+  </label>
+  <div id="suserbox">{%USERLIST%}</div>
+</form>
